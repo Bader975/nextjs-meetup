@@ -1,6 +1,8 @@
 import { MongoClient } from 'mongodb';
-// endPoint will be like this
-// /api/new-meetup
+
+
+// endPoint will be like this 
+//  /api/new-meetup
 
 export default async function handler(req, res) {
     try {
@@ -12,12 +14,13 @@ export default async function handler(req, res) {
             const result = await meetupsCollection.insertOne(data)
             console.log(result);
             clinet.close();
-            res.status(201).json({ message: "Meetup Was Added successfully" })
-           
+            res.status(201).json({ message: "Meetup Was Added successfully" });
+            
+
         }
     } catch (error) {
         console.log(error);
     }
-    
+
 }
 
