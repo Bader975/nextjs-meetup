@@ -6,6 +6,8 @@ import { MongoClient, ObjectId } from 'mongodb';
 import Head from 'next/head';
 export default function MeetupDetailsPage({ meetupData }) {
     const router = useRouter()
+    console.log(router.pathname);
+    console.log(router.query);
     return (
         <>
             <Head>
@@ -13,26 +15,30 @@ export default function MeetupDetailsPage({ meetupData }) {
                 <meta name='description' content={meetupData.description} />
             </Head>
             <Card>
+                {router.pathname}
+                <h1>------------</h1>
+                {router.query.meetupId}
+
                 <div className={classes.image}>
                     <img src={meetupData.image} alt='' />
                 </div>
+
                 <div className={classes.content}>
                     <h3>{meetupData.title}</h3>
                     <address>{meetupData.address}</address>
                     <p>{meetupData.description}</p>
                 </div>
-
             </Card>
-
         </>
     )
 }
+
+
 
 export const getStaticPaths = async () => {
     const clinet = await MongoClient.connect('mongodb+srv://bader:trtMPEYPpcucDusr@cluster0.7voolcp.mongodb.net/?retryWrites=true&w=majority');
     const db = clinet.db();
     const meetupsCollection = db.collection('meetups');
-
     const meetups = await meetupsCollection.find({}, { _id: 1 }).toArray();
     clinet.close();
     return {
@@ -48,7 +54,7 @@ export const getStaticProps = async (context) => {
     const meetupsCollection = db.collection('meetups');
 
     const selectedMeetUP = await meetupsCollection.findOne({ _id: new ObjectId(meetUpId), });
-    console.log(selectedMeetUP);
+
 
     clinet.close();
 

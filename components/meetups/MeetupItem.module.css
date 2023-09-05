@@ -1,5 +1,9 @@
 .item {
   margin: 1rem 0;
+  border-radius: 20px;
+  border: 1px solid black;
+  overflow: hidden;
+  
 }
 
 .image {
@@ -32,6 +36,7 @@
 
 .actions button {
   font: inherit;
+  margin: 5px;
   cursor: pointer;
   color: #77002e;
   border: 1px solid #77002e;
@@ -42,5 +47,5 @@
 
 .actions button:hover,
 .actions button:active {
-  background-color: #ffe2ed;
+  background-color: #d8c2ca;
 }

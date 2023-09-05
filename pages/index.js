@@ -3,6 +3,8 @@ import Layout from '../components/layout/Layout'
 import MeetupList from '../components/meetups/MeetupList'
 import Head from 'next/head';
 import { MongoClient } from 'mongodb';
+import CardPage from './card';
+import Game from './game';
 
 // const dummyData = [
 //   {
@@ -33,11 +35,10 @@ import { MongoClient } from 'mongodb';
 export default function HomePage({ meetups }) {
   return (
     <>
-    <Head>
-      <title>Next JS Meet Up</title>
-      <meta name='description' content='This is the description of the meeting' />
-    </Head>
+
       <MeetupList meetups={meetups} />
+      {/* <CardPage data={meetups}/> */}
+      {/* <Game numPalyer={10}/> */}
     </>
 
   )
@@ -61,7 +62,7 @@ export default function HomePage({ meetups }) {
 // Next JS needs this function {getStaticProps}
 
 export const getStaticProps = async () => {
-  const clinet = await MongoClient.connect('mongodb+srv://bader:trtMPEYPpcucDusr@cluster0.7voolcp.mongodb.net/?retryWrites=true&w=majority');
+  const clinet = await MongoClient.connect('mongodb+srv://bader:fLZrLcgw4EfgAMBO@cluster0.7voolcp.mongodb.net/?retryWrites=true&w=majority');
   const db = clinet.db();
   const meetupsCollection = db.collection('meetups');
 
